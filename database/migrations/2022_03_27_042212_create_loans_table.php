@@ -17,7 +17,7 @@ class CreateLoansTable extends Migration
             $table->id();
             $table->unsignedBigInteger('amount');
             $table->datetime('loan_date');
-            $table->boolean('active');
+            $table->boolean('active')->default(True);
             $table->unsignedBigInteger('members_id');
             $table->foreign('members_id')->references('id')->on('members')->onDelete('cascade');
             $table->timestamps();

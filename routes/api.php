@@ -19,6 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/loans', 'App\Http\Controllers\LoansController@index');
+Route::get('/loans/{id}', 'App\Http\Controllers\LoansController@show');
 Route::post('/loans', 'App\Http\Controllers\LoansController@store');
 Route::put('/loans/{id}', 'App\Http\Controllers\LoansController@update');
 Route::delete('/loans/{id}', 'App\Http\Controllers\LoansController@destroy');

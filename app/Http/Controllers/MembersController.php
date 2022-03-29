@@ -55,10 +55,7 @@ class MembersController extends Controller
      */
     public function show($id)
     {
-        $member = Members::find($id);
-        if (is_null($member)) {
-            return $this->sendError('Miembro no encontrado.');
-        }
+        $member = Members::findOrFail($id);
         return $member;
     }
 

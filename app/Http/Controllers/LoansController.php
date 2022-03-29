@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Loans;
+use Illuminate\Support\Facades\Log;
 
 class LoansController extends Controller
 {
@@ -33,16 +34,6 @@ class LoansController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -50,9 +41,11 @@ class LoansController extends Controller
      */
     public function store(Request $request)
     {
+        Log::info($request->members_id);
         $loans = new Loans();
-        $loans->amount = $request->monto;
-
+        $loans->amount = $request->amount;
+        $loans->loan_date = $request->loan_date;
+        $loans->members_id = $request->members_id;
         $loans->save();
     }
 
@@ -64,18 +57,8 @@ class LoansController extends Controller
      */
     public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+        $loan = Loans::with('members')->findOrFail($id);
+        return $loan;
     }
 
     /**
@@ -89,6 +72,8 @@ class LoansController extends Controller
     {
         $loans = Loans::findOrFail($id);
         $loans->amount = $request->amount;
+        $loans->loan_date = $request->loan_date;
+        $loans->members_id = $request->members_id;
 
         $loans->save();
 
