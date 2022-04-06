@@ -29,3 +29,9 @@ Route::get('/members/{id}', 'App\Http\Controllers\MembersController@show');
 Route::post('/members', 'App\Http\Controllers\MembersController@store');
 Route::put('/members/{id}', 'App\Http\Controllers\MembersController@update');
 Route::delete('/members/{id}', 'App\Http\Controllers\MembersController@destroy');
+Route::get('/file-export/{year}', 'App\Http\Controllers\ReportsController@fileExport');
+
+Route::post('/payments', 'App\Http\Controllers\PaymentsController@store');
+Route::put('/payments/{id}', 'App\Http\Controllers\PaymentsController@update');
+Route::delete('/payments/{id}', 'App\Http\Controllers\PaymentsController@destroy');
+Route::get('/payments/{id}/loans', 'App\Http\Controllers\PaymentsController@getByLoanId')->whereNumber('id')->whereAlpha('loans');
