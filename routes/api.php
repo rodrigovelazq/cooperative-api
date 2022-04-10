@@ -35,3 +35,5 @@ Route::post('/payments', 'App\Http\Controllers\PaymentsController@store');
 Route::put('/payments/{id}', 'App\Http\Controllers\PaymentsController@update');
 Route::delete('/payments/{id}', 'App\Http\Controllers\PaymentsController@destroy');
 Route::get('/payments/{id}/loans', 'App\Http\Controllers\PaymentsController@getByLoanId')->whereNumber('id')->whereAlpha('loans');
+
+Route::get('/roles', 'App\Http\Controllers\RolesController@index');
